@@ -6,12 +6,15 @@ verify_ssl = true
 [dev-packages]
 flake8 = "*"
 black = "*"
+awsebcli = "*"
 
 [packages]
 django = "==3.1"
 pillow = "*"
 django-countries = "*"
 django-seed = "*"
+django-dotenv = "*"
+requests = "*"
 
 [requires]
 python_version = "3.8"

@@ -1,0 +1,100 @@
+@tailwind base;
+@tailwind components;
+
+.search-box {
+  transition: box-shadow 0.2s linear;
+}
+
+.nav_link {
+  @apply ml-8 border-b-2 border-white h-full flex items-center;
+  a {
+    @apply text-gray-700 py-20 px-2;
+  }
+  &:hover {
+    @apply border-gray-600;
+  }
+}
+
+.btn {
+  @apply text-center rounded-md my-1 py-5 text-lg w-full;
+}
+
+input,
+textarea,
+select {
+  @apply text-left rounded-md my-1 py-5 text-lg w-full border border-gray-600 px-5;
+  &:focus {
+    @apply outline-none border-red-400;
+  }
+}
+
+textarea {
+  resize: none;
+  height: 100px;
+}
+
+select {
+  height: 30px;
+}
+
+form {
+  .input {
+    @apply mb-3;
+    &.has_error {
+      input {
+        @apply bg-red-200 border-gray-400;
+        &:focus {
+          @apply border-gray-600;
+        }
+      }
+    }
+  }
+}
+
+@keyframes messageFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-100px);
+  }
+  5% {
+    opacity: 1;
+    transform: translateY(50px);
+  }
+  95% {
+    opacity: 1;
+    transform: translateY(50px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-100px);
+  }
+}
+
+.message {
+  animation: messageFadeIn 5s ease-in-out forwards;
+  &.error {
+    @apply bg-red-600;
+  }
+  &.success {
+    @apply bg-green-600;
+  }
+  &.info {
+    @apply bg-blue-600;
+  }
+  &.warning {
+    @apply bg-yellow-600;
+  }
+}
+
+.border_section {
+  @apply border-b border-gray-400 pb-5 mt-5;
+}
+
+.cal-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-gap: 10px;
+  justify-items: center;
+}
+
+@tailwind utilities;

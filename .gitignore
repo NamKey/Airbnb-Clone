@@ -142,3 +142,10 @@ cython_debug/
 uploads/
 photos_seed
 photos_seed.zip
+node_modules
+libc6_2.31-0ubuntu8+lp1871129~1_amd64.deb
+package-lock.json
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml

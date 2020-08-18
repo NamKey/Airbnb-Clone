@@ -1,7 +1,9 @@
+from django.utils import timezone
 from django.db import models
 from django.urls import reverse
 from django_countries.fields import CountryField
 from core import models as core_models
+from cal import Calendar
 
 
 class AbstractItem(core_models.TimeSatampedModel):
@@ -100,5 +102,32 @@ class Room(core_models.TimeSatampedModel):
         if len(all_reviews) > 0:
             for review in all_reviews:
                 all_ratings += review.rating_average()
-            return all_ratings / len(all_reviews)
+            return round(all_ratings / len(all_reviews), 2)
         return 0
+
+    def get_thumbnail(self):
+        try:
+            photo, *_ = self.photos.all()[:1]
+            return photo.file.url
+        except ValueError:
+            return None
+
+    def get_detailphotos(self):
+        photos = self.photos.all()[1:5]
+        return photos
+
+    def get_calendars(self):
+        now = timezone.now()
+        this_year = now.year
+        this_month = now.month
+        next_month = this_month + 1
+        if this_month == 12:
+            next_month = 1
+            next_year = this_year + 1
+            this_month_cal = Calendar(this_year, this_month)
+            next_month_cal = Calendar(next_year, next_month)
+        else:
+            this_month_cal = Calendar(this_year, this_month)
+            next_month_cal = Calendar(this_year, next_month)
+
+        return [this_month_cal, next_month_cal]
